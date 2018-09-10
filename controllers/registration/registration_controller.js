@@ -52,11 +52,10 @@ router.delete("/job_details/:id", function(req, res) {
       });
 })
 
-
 var billing_information = require('../../models/registration/registration_billing_informations');
 
 // CREATES A NEW BILLING INFORMATION
-router.post('/billing_and_payment', function (req, res) {
+router.post('/billing', function (req, res) {
     billing_information.create({
             first_name : req.body.first_names,
             last_name : req.body.last_name,
@@ -103,7 +102,7 @@ router.delete("/billing_details/:id", function(req, res) {
 var credit_card_information = require('../../models/registration/registration_credit_card_informations');
 
 // CREATES A NEW CREDIT CARD INFORMATION
-router.post('/billing_and_payment', function (req, res) {
+router.post('/payment', function (req, res) {
     credit_card_information.create({
             full_name_on_card : req.body.full_name_on_card,
             credit_card_number : req.body.credit_card_number,
