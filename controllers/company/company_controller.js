@@ -25,6 +25,15 @@ router.get('/ceo', function (req, res) {
         res.status(200).send(ceos);
     });
 });
+
+// Returns a ceo given the id
+router.get('/ceo/:id', function (req, res) {
+    ceo.findById(req.params.id, function (err, ceos) {
+        if (err) return res.status(500).send("There was a problem finding the ceos.");
+        res.status(200).send(ceos);
+    });
+});
+
 // Updates a ceo
 router.put('/ceo/:id', function (req, res) {
     ceo.findByIdAndUpdate(req.params.id, req.body, function (err, post) {
@@ -65,6 +74,15 @@ router.get('/location', function (req, res) {
         res.status(200).send(ceos);
     });
 });
+
+// Returns a location given the id
+router.get('/location/:id', function (req, res) {
+    location.findById(req.params.id, function (err, ceos) {
+        if (err) return res.status(500).send("There was a problem finding the ceos.");
+        res.status(200).send(ceos);
+    });
+});
+
 // Updates a location
 router.put('/location/:id', function (req, res) {
     location.findByIdAndUpdate(req.params.id, req.body, function (err, post) {
@@ -104,6 +122,15 @@ router.get('/benefit', function (req, res) {
         res.status(200).send(ceos);
     });
 });
+
+// Returns a benefit given the id
+router.get('/benefit/:id', function (req, res) {
+    benefit.findById(req.params.id, function (err, ceos) {
+        if (err) return res.status(500).send("There was a problem finding the ceos.");
+        res.status(200).send(ceos);
+    });
+});
+
 // Updates a benefit
 router.put('/benefit/:id', function (req, res) {
     benefit.findByIdAndUpdate(req.params.id, req.body, function (err, post) {
@@ -137,13 +164,22 @@ router.post('/award', function (req, res) {
             res.status(200).send(ceo);
         });
 });
-// Returns all the benefits in the database
+// Returns all the awards in the database
 router.get('/award', function (req, res) {
     award.find({}, function (err, ceos) {
         if (err) return res.status(500).send("There was a problem finding the ceos.");
         res.status(200).send(ceos);
     });
 });
+
+// Returns a award given the id
+router.get('/award/:id', function (req, res) {
+    award.findById(req.params.id, function (err, ceos) {
+        if (err) return res.status(500).send("There was a problem finding the ceos.");
+        res.status(200).send(ceos);
+    });
+});
+
 // Updates a benefit
 router.put('/award/:id', function (req, res) {
     award.findByIdAndUpdate(req.params.id, req.body, function (err, post) {
@@ -183,6 +219,15 @@ router.get('/photo', function (req, res) {
         res.status(200).send(ceos);
     });
 });
+
+// Returns a photo given the id
+router.get('/photo/:id', function (req, res) {
+    photo.findById(req.params.id, function (err, ceos) {
+        if (err) return res.status(500).send("There was a problem finding the ceos.");
+        res.status(200).send(ceos);
+    });
+});
+
 // Updates a photo
 router.put('/photo/:id', function (req, res) {
     photo.findByIdAndUpdate(req.params.id, req.body, function (err, post) {
@@ -221,6 +266,15 @@ router.get('/update', function (req, res) {
         res.status(200).send(ceos);
     });
 });
+
+// Returns a update given the id
+router.get('/update/:id', function (req, res) {
+    update.findById(req.params.id, function (err, ceos) {
+        if (err) return res.status(500).send("There was a problem finding the ceos.");
+        res.status(200).send(ceos);
+    });
+});
+
 // Updates a update
 router.put('/update/:id', function (req, res) {
     update.findByIdAndUpdate(req.params.id, req.body, function (err, post) {
@@ -279,6 +333,15 @@ router.get('/company', function (req, res) {
         res.status(200).send(ceos);
     });
 });
+
+//Returns a company given the id
+router.get('/company/:id', function (req, res) {
+    company.findById(req.params.id).populate('company_ceos company_locations company_benefits company_awards company_photos company_updates').exec( function (err, ceos) {
+        if (err) return res.status(500).send("There was a problem finding the ceos.");
+        res.status(200).send(ceos);
+    });
+});
+
 // Updates a update
 router.put('/company/:id', function (req, res) {
     company.findByIdAndUpdate(req.params.id, req.body, function (err, post) {
