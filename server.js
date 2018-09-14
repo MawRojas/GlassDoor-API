@@ -22,11 +22,13 @@ mongoose.connect(db, err => {
 var companyController = require('./controllers/company/company_controller');
 var registrationController = require('./controllers/registration/registration_controller');
 var reviewController = require('./controllers/review/review_controller');
+var fileController = require('./controllers/files/files_controller');
 
 //Add your controllers to the app
 app.use('/company', companyController);
 app.use('/registration', registrationController);
 app.use('/review', reviewController);
+app.use('/file', fileController);
 
 
 console.log("Listening to port: " + port);

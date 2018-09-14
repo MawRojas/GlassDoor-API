@@ -3,19 +3,31 @@ var router = express.Router();
 var bodyParser = require('body-parser');
 const fs = require('fs');
 const multer = require("multer");
+const path = require("path");
 
-router.use(bodyParser.urlencoded({ extended: true }));
-router.use(bodyParser.json());
+router.use(bodyParser.json({ limit: '50mb' }));
+router.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 
 const upload = multer({
-    dest: "/path/to/temporary/directory/to/store/uploaded/files"
+    dest: "../../files/"
 });
+
+const handleError = (err, res) => {
+  res
+    .status(500)
+    .contentType("text/plain")
+    .end("Oops! Something went wrong!");
+};
 
 router.post("/upload/:name", upload.single("file"), (req, res) => {
       const tempPath = req.file.path;
-      const targetPath = path.join(__dirname, ("./files/" + req.param.name));
+      const targetPath = path.join(__dirname, ("../../files/" + req.params.name));
+      console.log('Name of picture: ' + req.params.name);
+      console.log(path.extname(req.file.originalname).toLowerCase());
+      console.log('File path: '+ tempPath);
+      console.log('Target path' + targetPath);
   
-      if (path.extname(req.file.originalname).toLowerCase() === ".png") {
+      if (path.extname(req.file.originalname).toLowerCase() === ".png" || path.extname(req.file.originalname).toLowerCase() === ".jpg") {
         fs.rename(tempPath, targetPath, err => {
           if (err) return handleError(err, res);
           res
@@ -29,12 +41,14 @@ router.post("/upload/:name", upload.single("file"), (req, res) => {
           res
             .status(403)
             .contentType("text/plain")
-            .end("Only .png files are allowed!");
+            .end("Only .png or .jpg files are allowed!");
         });
       }
     }
 );
 
 router.get('/get/:name', (req, res) => {
-    res.sendFile(path.join(__dirname, ("./files/" + req.param.name)));
+    res.sendFile(path.join(__dirname, ("./files/" + req.params.name)));
 });
+
+module.exports = router;
