@@ -48,7 +48,13 @@ router.post("/upload/:name", upload.single("file"), (req, res) => {
 );
 
 router.get('/get/:name', (req, res) => {
-    res.sendFile(path.join(__dirname, ("./files/" + req.params.name)));
+    res.sendFile(path.join(__dirname, ("../../files/" + req.params.name)));
+});
+
+router.get('/path/:name', (req, res) => {
+  var picture_path = path.join(__dirname, ("../../files/" + req.params.name));
+  console.log(picture_path);
+  res.send(picture_path);
 });
 
 module.exports = router;
