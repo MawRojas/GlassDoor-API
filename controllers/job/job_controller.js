@@ -16,9 +16,10 @@ router.post('/job', function(req, res){
         apply_starts : req.body.apply_starts,
         apply_start_rate : req.body.apply_start_rate,
         days_sponsored : req.body.days_sponsored,
-        location : req.body.locations,
+        location : req.body.location,
         company : req.body.company,
-        applicants : req.body.applicants
+        applicants : req.body.applicants,
+        is_slotted : req.body.is_slotted
     },
     function(err, job){
         if(err) return res.status(500).send("There was a problem adding the job to the database.");

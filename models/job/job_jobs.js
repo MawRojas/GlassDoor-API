@@ -13,6 +13,7 @@ var jobSchema = new Schema({
     location: String,
     company: String,
     applicants: [String],
+    is_slotted: Boolean
 })
 
 module.exports = mongoose.model('job_jobs', jobSchema);
