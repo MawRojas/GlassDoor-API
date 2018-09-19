@@ -8,7 +8,7 @@ router.use(bodyParser.json());
 var job_detail = require('../../models/registration/registration_job_details');
 
 // CREATES A NEW JOB DETAIL
-router.post('/job_details', function (req, res) {
+router.post('/job_detail', function (req, res) {
     job_detail.create({
             company_names : req.body.company_names,
             job_title : req.body.job_title,

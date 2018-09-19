@@ -55,7 +55,9 @@ router.post('/employee_review', function (req, res) {
     employee_review.create({
             job_title : req.body.job_title,
             salary : req.body.salary,
-            job_level : req.body.job_level
+            job_level : req.body.job_level,
+            subject : req.body.subject,
+            message : req.body.message
         }, 
         function (err, employee_review) {
             if (err) return res.status(500).send("There was a problem adding the employee review to the database.");
@@ -100,7 +102,9 @@ router.post('/interview_review', function (req, res) {
             offer_type : req.body.offer_type,
             interview_exprience : req.body.interview_exprience,
             recruitment_source: req.body.recruitment_source,
-            interview_difficulty: req.body.interview_difficulty
+            interview_difficulty: req.body.interview_difficulty,
+            subject : req.body.subject,
+            message : req.body.message
         }, 
         function (err, interview_review) {
             if (err) return res.status(500).send("There was a problem adding the interview review to the database.");

@@ -3,11 +3,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 var jobDetailsSchema = new Schema ({
-    company_names: [{
-        type: String,
-        ref: 'company_companies',
-        required: true
-    }],
+    company_names: String,
     job_title: String,
     city: String,
     state: String,
