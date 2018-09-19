@@ -11,4 +11,4 @@ var accountInfoSchema=new Schema({
   newPassword:String
 })
 
-module.exports = mongoose.model('account_info', accountInfoSchemardsSchema);
+module.exports = mongoose.model('account_info', accountInfoSchema);

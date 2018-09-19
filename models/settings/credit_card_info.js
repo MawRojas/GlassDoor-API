@@ -8,4 +8,4 @@ var creditCardSchema=new Schema({
     expDate:String,
     cvc:String
 })
-module.exports = mongoose.model('credit_card_info', billingAddressSchema);
+module.exports = mongoose.model('credit_card_info', creditCardSchema);

@@ -7,7 +7,7 @@ var billingAddressSchema=new Schema({
   country:String,
   state:String,
   city:String,
-  zip:any
+  zip:String
 })
 
 module.exports = mongoose.model('billing_address', billingAddressSchema);
