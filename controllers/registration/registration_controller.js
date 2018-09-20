@@ -8,7 +8,7 @@ router.use(bodyParser.json());
 var job_detail = require('../../models/registration/registration_job_details');
 
 // CREATES A NEW JOB DETAIL
-router.post('/job_detail', function (req, res) {
+router.post('/job_details', function (req, res) {
     job_detail.create({
             company_names : req.body.company_names,
             job_title : req.body.job_title,
@@ -31,6 +31,14 @@ router.get('/job_details', function (req, res) {
         res.status(200).send(job_details);
     });
 });
+
+// GET SINGLE JOB DETAIL BY ID
+router.get('/job_details/:id', function(req, res, next) {
+    job_detail.findById(req.params.id, function (err, job_details) {
+      if (err) return next(err);
+      res.json(job_details);
+    });
+  });
 
 // UPDATES A JOB DETAIL
 router.put('/job_details/:id', function (req, res) {
@@ -57,7 +65,7 @@ var billing_information = require('../../models/registration/registration_billin
 // CREATES A NEW BILLING INFORMATION
 router.post('/billing', function (req, res) {
     billing_information.create({
-            first_name : req.body.first_names,
+            first_name : req.body.first_name,
             last_name : req.body.last_name,
             street_addr: req.body.street_addr,
             country: req.body.country,
@@ -78,6 +86,14 @@ router.get('/billing_details', function (req, res) {
         res.status(200).send(billing_information);
     });
 });
+
+// GET SINGLE BILLING DETAIL BY ID
+router.get('/billing_details/:id', function(req, res, next) {
+    billing_information.findById(req.params.id, function (err, billing_details) {
+      if (err) return next(err);
+      res.json(billing_details);
+    });
+  });
 
 // UPDATES A BILLING INFORMATION
 router.put('/billing_details/:id', function (req, res) {
@@ -123,6 +139,14 @@ router.get('/credit_card_details', function (req, res) {
         res.status(200).send(credit_card_information);
     });
 });
+
+// GET SINGLE CREDIT CARD DETAIL BY ID
+router.get('/credit_card_details/:id', function(req, res, next) {
+    credit_card_information.findById(req.params.id, function (err, credit_card_information) {
+      if (err) return next(err);
+      res.json(credit_card_information);
+    });
+  });
 
 // UPDATES A CREDIT CARD INFORMATION
 router.put('/credit_card_details/:id', function (req, res) {

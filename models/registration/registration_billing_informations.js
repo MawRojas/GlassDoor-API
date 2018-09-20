@@ -9,7 +9,7 @@ var billingInformationSchema = new Schema ({
     country: String,
     state: String,
     city: String,
-    zip_code: Number
+    zipcode: Number
 })
 
 module.exports = mongoose.model('registration_billing_informations', billingInformationSchema);

@@ -73,6 +73,16 @@ router.get('/employee_reviews', function (req, res) {
     });
 });
 
+// RETURNS EMPLOYEE REVIEW BY ID IN THE DATABASE
+router.get('/employee_review/:id', function (req, res) {
+    employee_review.findById(req.params.id)
+        .then(doc => {
+            if(!doc) { return res.status(404).end();}
+            return res.status(200).json(doc);
+        })
+        .catch(err => next(err));
+});
+
 // UPDATES A EMPLOYEE REVIEW
 router.put('/employee_review/:id', function (req, res) {
     employee_review.findByIdAndUpdate(req.params.id, req.body, function (err, post) {
@@ -118,6 +128,16 @@ router.get('/interview_reviews', function (req, res) {
         if (err) return res.status(500).send("There was a problem finding the employee reviews.");
         res.status(200).send(interview_review);
     });
+});
+
+// RETURNS INTERVIEW REVIEW BY ID IN THE DATABASE
+router.get('/interview_review/:id', function (req, res) {
+    interview_review.findById(req.params.id)
+        .then(doc => {
+            if(!doc) { return res.status(404).end();}
+            return res.status(200).json(doc);
+        })
+        .catch(err => next(err));
 });
 
 // UPDATES A INTERVIEW REVIEW
